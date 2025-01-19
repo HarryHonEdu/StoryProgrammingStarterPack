@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" href="https://media.tenor.com/JX2rKCkcUDUAAAAe/hoshimachi-suisei-hololive.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=ZCOOL+QingKe+HuangYou&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=ZCOOL+QingKe+HuangYou&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://pbs.twimg.com/media/FPVICs4XwAI0Zk-.jpg:large');
+            background-size: cover;
+            background-position: center;
+            min-height: 110vh;
+            position: relative;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px);
+            z-index: -1;
+            /* Place it behind content */
+        }
+
+        body::after {
+            content: '';
+            /* Empty content box for dark overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent dark overlay */
+            z-index: -1;
+            /* Place it behind the content */
+        }
+
+        .wrapper {
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar {
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        body.sidebar-open .wrapper {
+            filter: blur(5px);
+            transform: scale(0.98);
+            pointer-events: none;
+        }
+
+        body.sidebar-open .navbar {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .nav-link {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Add transition for background color and transform */
+        }
+
+        /* Hover effect for sidebar links */
+        .nav-link:hover {
+            background-color: #5a5a5a;
+            /* Change this to the desired hover color */
+            color: #fff;
+            /* Ensures text stays white */
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: rotate(-2deg);
+        }
+
+        .bg-dark .nav-link:hover {
+            background-color: #444;
+            /* Darker background for dark sidebar */
+        }
+
+        .bg-secondary .nav-link:hover {
+            background-color: #666;
+            /* Darker background for secondary sidebar */
+        }
+
+        /* Body content */
+        .content {
+            transition: margin-left 0.3s ease;
+            /* Smooth content transition */
+        }
+
+        /* Optional: Content padding adjustment when sidebar is open */
+        body.sidebar-open .content {
+            margin-left: 250px;
+            /* Shift content when sidebar is open */
+        }
+
+        /* Button to toggle sidebar */
+        .toggle-btn {
+            border-radius: 15px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #424d8a;
+            /* Suisei's color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 2000;
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .toggle-btn:hover {
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            background-color: #6a6a6a;
+            transform: scale(1.05);
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 0;
+            left: -250px;
+            /* Initially hidden */
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(135deg, #424d8a, #2b346a);
+            /* Suisei-inspired gradient */
+            color: white;
+            padding-top: 20px;
+            transition: left 0.3s ease;
+            /* Smooth animation for sliding */
+            z-index: 1000;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        /* From Uiverse.io by Bastiennnn */
+        .card {
+            width: 500px;
+            height: 300px;
+            margin: 20px auto;
+            background-color: #24233b;
+            border-radius: 8px;
+            z-index: 1;
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.7);
+            transition: 0.5s;
+            z-index: 2;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+
+        }
+
+        .top {
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            z-index: 2;
+        }
+
+        .circle {
+            padding: 0 4px;
+            z-index: 2;
+        }
+
+        .circle2 {
+            display: inline-block;
+            align-items: center;
+            width: 10px;
+            height: 10px;
+            padding: 1px;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .red {
+            background-color: #ff605c;
+            z-index: 2;
+        }
+
+        .yellow {
+            background-color: #ffbd44;
+            z-index: 2;
+        }
+
+        .green {
+            background-color: #00ca4e;
+            z-index: 2;
+        }
+
+        .header {
+            margin: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        #title2 {
+            color: white;
+            padding-left: 75px;
+            font-size: 14px;
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .code-container {
+            text-align: center;
+        }
+
+        #code {
+            z-index: 2;
+            width: 462px;
+            height: 245px;
+            resize: none;
+            background-color: rgb(73, 70, 92);
+            border-radius: 5px;
+            border: none;
+            color: white;
+            padding: 10px;
+        }
+
+        #code:focus {
+            outline: none !important;
+        }
+
+        .flex-container {
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            /* Ensure space between text and card */
+            align-items: flex-start;
+            /* Align text and card at the top */
+        }
+
+        .text-container {
+            z-index: 2;
+            flex: 1;
+            /* Allow the text to take up available space */
+            /* Add some spacing between the text and card */
+        }
+
+        .typing-effect {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            /* Initial width is 0 */
+            animation: typing 0.5s steps(150) 1s forwards;
+            line-height: 1.2;
+            padding-bottom: 10px;
+            position: relative;
+            /* To position the caret inside */
+        }
+
+        /* Typing keyframes */
+        @keyframes typing {
+            to {
+                width: 68%;
+                /* Make the width 100% at the end */
+            }
+        }
+
+        /* Create the caret using pseudo-element */
+        .typing-effect::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            /* Position caret to the right */
+            width: 5px;
+            /* Initial caret width */
+            height: 100%;
+            /* Caret's height should match text */
+            background-color: aliceblue;
+            /* Caret color */
+            animation: hide-caret 4s forwards, shrink-caret 0.5s 4s forwards;
+            /* Shrink and hide caret */
+        }
+
+        /* Hide the caret (cursor) after typing ends */
+        @keyframes hide-caret {
+            100% {
+                width: 0;
+                /* Make the caret disappear */
+            }
+        }
+
+        /* Shrink the caret vertically without affecting the text */
+        @keyframes shrink-caret {
+            0% {
+                transform: scaleY(1);
+                /* Normal size */
+            }
+
+            100% {
+                transform: scaleY(0.2);
+                /* Shrunk caret height */
+            }
+        }
+
+        .suisei {
+            z-index: 1;
+            position: absolute;
+            width: 200px;
+            height: auto;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Keep the image fixed while scrolling */
+            z-index: 1;
+            /* Layer below the content */
+            transition: all 0.2s ease;
+        }
+
+        .suisei:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #424d8a;">
+        <div class="container-fluid">
+            <a href="https://www.youtube.com/watch?v=5mL-UCbRPnk" target="blank">
+                <img class="d-inline-block align-text-top" src="https://hidamarirhodonite.kirara.ca/sign/201381.png"
+                    alt="" width="100" height="80">
+            </a>
+
+            <ul class="navbar-nav ms-auto d-flex align-items-center">
+                <li class="nav-item">
+                    <span class="caveat-brush-regular navbar-text me-3">
+                        <strong style="color: aliceblue;" id="username">Story's Gaming Development
+                            Starter Pack</strong>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="sidebar" id="sidebar">
+        <h4 class="caveat-brush-regular text-center text-white">Documentation</h4>
+        <ul class="funnel-sans nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Getting Started</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">API</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Examples</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Tutorials</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Support</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Community</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Contact</a>
+            </li>
+        </ul>
+        <div class="sidebar-text text-white text-center px-2" style="margin-top: 280px; font-size:medium;">
+            <span class="navbar-text">
+                <strong style="color: aliceblue;" id="username">(❁´◡`❁)</strong>
+            </span>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <main>
+            <div class="flex-container">
+                <div class="text-container">
+                    <h1 class="typing-effect"
+                        style="margin-top: 100px; margin-left: 125px; color: aliceblue; font-size: 120px;">
+                        Code<br>Every<u>thing</u>.</h1>
+                    <h5 style="margin-left: 125px; color: aliceblue; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);">
+                        Code your dreams.<br>One line at a time. <i style="margin-left: 5px;"
+                            class="fa-solid fa-code"></i>
+                    </h5><br>
+                    <h6
+                        style="width: 50%; margin-left: 125px; color: aliceblue; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);">
+                        Your background, experience, or the skills you start with don't define your ability to code.
+                        Every line of code is a step forward, and anyone, no matter where they begin, can learn, grow,
+                        and master the art of programming.</h6>
+                </div>
+
+                <div style="margin-top: 100px; margin-right: 150px;" class="card-container">
+                    <div class="card">
+                        <div class="header">
+                            <div class="top">
+                                <div class="circle">
+                                    <span class="red circle2"></span>
+                                </div>
+                                <div class="circle">
+                                    <span class="yellow circle2"></span>
+                                </div>
+                                <div class="circle">
+                                    <span class="green circle2"></span>
+                                </div>
+                                <div class="title">
+                                    <h6 id="title2"><i style="margin-right: 10px;" class="fa-solid fa-terminal"></i>My
+                                        First C++ Program.cpp</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <textarea style="font-family: Consolas, monaco, monospace;" class="area" id="code"
+                                name="code" readonly="">
+#include &lt;iostream&gt;
+
+int main() {
+    std::cout &lt;&lt; "Hello World!"; 
+    return 0;
+}
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <img style="margin-left: 1250px;" class="suisei"
+                    src="https://hololive.hololivepro.com/wp-content/uploads/2024/08/Hoshimachi-Suisei_pr-img_01-734x1440.png">
+            </div>
+        </main>
+
+    </div>
+
+
+
+    <button id="sidebar-toggle-btn" class="toggle-btn" onclick="toggleSidebar()"><i
+            class="fa-solid fa-bars"></i></button>
+
+    <script>
+        // Sidebar toggle function
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const body = document.body;
+
+            // Toggle sidebar visibility
+            if (sidebar.style.left === '0px') {
+                closeSidebar(); // Close sidebar
+            } else {
+                openSidebar(); // Open sidebar
+            }
+        }
+
+        // Open the sidebar
+        function openSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const body = document.body;
+
+            sidebar.style.left = '0px'; // Show sidebar
+            body.classList.add('sidebar-open'); // Add content shift
+            document.addEventListener('click', closeSidebarOnClickOutside, true); // Add listener for outside clicks
+        }
+
+        // Close the sidebar
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const body = document.body;
+
+            sidebar.style.left = '-250px'; // Hide sidebar
+            body.classList.remove('sidebar-open'); // Remove content shift
+            document.removeEventListener('click', closeSidebarOnClickOutside, true); // Remove listener for outside clicks
+        }
+
+        // Close sidebar when clicking outside
+        function closeSidebarOnClickOutside(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggleButton = document.getElementById('sidebar-toggle-btn');
+
+            // Check if the click happened outside the sidebar and the toggle button
+            if (!sidebar.contains(event.target) && event.target !== toggleButton) {
+                closeSidebar();
+            }
+        }
+    </script>
+    <footer>
+        <p>&copy; 2025 Made with ❤️ by Harry Hon.</p>
+    </footer>
+</body>
+
+</html>
