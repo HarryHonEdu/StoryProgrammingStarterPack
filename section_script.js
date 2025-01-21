@@ -26,7 +26,7 @@
             const sidebar = document.getElementById('sidebar');
             const body = document.body;
 
-            sidebar.style.left = '-250px'; // Hide sidebar
+            sidebar.style.left = '-275px'; // Hide sidebar
             body.classList.remove('sidebar-open'); // Remove content shift
             document.removeEventListener('click', closeSidebarOnClickOutside, true); // Remove listener for outside clicks
         }

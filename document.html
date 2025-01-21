@@ -23,9 +23,8 @@
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        *,
         html {
-            height: auto;
+            height: 100%;
             scroll-behavior: smooth;
         }
 
@@ -36,6 +35,7 @@
             height: 100%;
             position: relative;
             overflow-x: hidden;
+            overflow-y: scroll;
             padding-top: 1%;
             margin: 0;
         }
@@ -76,7 +76,15 @@
 
         .section:nth-child(2) {
             position: relative;
-            background-image: url('https://images4.alphacoders.com/124/1243891.jpg');
+            background-size: cover;
+            /* Ensures the image covers the whole area */
+            background-position: center;
+            /* Center the image */
+            background-repeat: no-repeat;
+            /* Prevent repeating the image */
+            width: auto;
+            height: 1920px;
+            background-image: url('https://wallpapers.com/images/featured/vertical-background-0ky9f0wy7qxg8h0x.jpg');
         }
 
         .section:nth-child(2)::before {
@@ -106,19 +114,6 @@
             /* Semi-transparent dark overlay */
             z-index: 0;
             /* Place it behind the content */
-        }
-
-        .section:nth-child(1),
-        .section:nth-child(2) {
-            position: relative;
-            height: 100vh;
-            /* Full screen height */
-            background-size: cover;
-            /* Ensure the image covers the entire section */
-            background-position: center;
-            /* Center the background image */
-            background-blend-mode: overlay;
-            /* Set the blend mode */
         }
 
         .wrapper {
@@ -153,6 +148,7 @@
             /* Ensures text stays white */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transform: rotate(2deg) scale(1.1);
+            border-radius: 15px;
         }
 
         .bg-dark .nav-link:hover {
@@ -205,9 +201,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
             position: fixed;
             top: 0;
-            left: -250px;
+            left: -300px;
             /* Initially hidden */
-            width: 250px;
+            width: 275px;
             height: 100%;
             background: linear-gradient(135deg, #424d8a, #2b346a);
             /* Suisei-inspired gradient */
@@ -223,7 +219,7 @@
         }
 
         /* From Uiverse.io by Bastiennnn */
-        .card {
+        .cardcode {
             width: 700px;
             height: 400px;
             margin: 20px auto;
@@ -235,7 +231,7 @@
             z-index: 2;
         }
 
-        .card:hover {
+        .cardcode:hover {
             transform: translateY(-7px);
             box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
 
@@ -514,6 +510,25 @@
             visibility: visible;
             opacity: 1;
         }
+
+        .card {
+            margin: 10px;
+            z-index: 1;
+            position: relative;
+            padding: 10px;
+            border-radius: 5%;
+            background-color: rgba(101, 101, 101, 0.6);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            background-color: rgba(127, 127, 127, 0.8);
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .card-text {
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -582,8 +597,12 @@
             <div class="section">
                 <div class="flex-container">
                     <div class="text-container">
+                        <h5
+                            style="margin-top: 100px; margin-left: 125px; color: aliceblue; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);">
+                            <u>Getting Started</u>
+                        </h5>
                         <h1 class="typing-effect"
-                            style="margin-top: 100px; margin-left: 125px; color: aliceblue; font-size: 120px;">
+                            style="margin-top: 5px; margin-left: 125px; color: aliceblue; font-size: 120px;">
                             Code<br>Every<u>thing</u>.</h1>
                         <h5 style="margin-left: 125px; color: aliceblue; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);">
                             Code your dreams.<br>One line at a time. <i style="margin-left: 5px;"
@@ -597,8 +616,8 @@
                             and master the art of programming.</h6>
                     </div>
 
-                    <div style="margin-top: 150px; margin-right: 280px;" class="card-container">
-                        <div class="card">
+                    <div style="margin-top: 195px; margin-right: 280px;" class="card-container">
+                        <div class="cardcode">
                             <div class="header">
                                 <div class="top">
 
@@ -635,8 +654,136 @@ int main() {
                     </div>
                 </div>
             </div>
+
+            <!-- Section 2 -->
             <div class="section">
-                <h1 class="text-center">Hi</h1>
+                <h1 class="text-center"
+                    style="margin-top: 40px; margin-bottom: 40px; color: aliceblue; font-size: 45px;">Learn
+                    a Programming
+                    Language</h1>
+
+                <p class="text-center">Learning a programming language is a <strong>fundamental</strong> step before
+                    diving into game
+                    development. It will
+                    give you the necessary foundation to understand how games work under the hood, solve problems, and
+                    customize your games.
+                    <br>
+                    <br>Programming knowledge is what will truly bring your creative ideas to life,
+                    whether you're building a simple 2D mobile game or a complex 3D open-world experience. So, pick a
+                    language that suits your goals and start coding today -
+                    <br>
+                    <br><strong>Your Game Development Journey Awaits!</strong>
+                </p>
+                <div class="container mt-5">
+                    <div class="row">
+                        <!-- Card 1 with Image Overlay -->
+                        <div class="col-md-4">
+                            <div class="card position-relative">
+                                <img src="https://i.pinimg.com/736x/02/25/a4/0225a431e5b2637204873584848f3949.jpg"
+                                    class="card-img-top" alt="Card image">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title text-center funnel-sans" style="background-color: rgba(0, 0, 0, 0.8); padding: 5px; border-radius: 15px; 
+                                        width: 35%; color: aliceblue; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);">
+                                        <img src="https://static-00.iconduck.com/assets.00/java-icon-1511x2048-6ikx8301.png"
+                                            style="width: 20px; height: 20px; margin-right: 5px;">Java
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-text funnel-sans" style="color: aliceblue;">Write Your First Java
+                                        Program in Minutes!</h5>
+                                    <a href="#" class="learn-button" style="text-decoration: none;">
+                                        <h5>Learn</h5>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 with Image Overlay -->
+                        <div class="col-md-4">
+                            <div class="card position-relative">
+                                <img src="https://i.pinimg.com/736x/e5/20/d5/e520d5fdf66615af98e523582d226bef.jpg"
+                                    class="card-img-top" alt="Card image">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title text-center funnel-sans" style="background-color: rgba(0, 0, 0, 0.8); padding: 5px; border-radius: 15px; 
+                                        width: 35%; color: aliceblue; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);"><img
+                                            src="https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png"
+                                            style="width: 20px; height: 20px; margin-right: 5px;">Python
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-text funnel-sans" style="color: aliceblue;">Unlock the Power of
+                                        Python for Data Science!</h5>
+                                    <a href="#" class="learn-button" style="text-decoration: none;">
+                                        <h5>Learn</h5>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 with Image Overlay -->
+                        <div class="col-md-4">
+                            <div class="card position-relative">
+                                <img src="https://pbs.twimg.com/media/Ett_FBHWQAAxHxd.jpg" class="card-img-top"
+                                    alt="Card image" style="height: 210px; width: 100%; object-fit: cover;">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title text-center funnel-sans" style="background-color: rgba(0, 0, 0, 0.8); padding: 5px; border-radius: 15px; 
+                                        width: 40%; color: aliceblue; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);">
+                                        <img src="https://static-00.iconduck.com/assets.00/c-sharp-c-icon-912x1024-j3yidw37.png"
+                                            style="width: 22px; height: 25px; margin-right: 5px;">C#
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-text funnel-sans" style="color: aliceblue;">C# – A modern,
+                                        object-oriented, and type-safe programming language.</h5>
+                                    <a href="#" class="learn-button" style="text-decoration: none;">
+                                        <h5>Learn</h5>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 with Image Overlay -->
+                        <div class="col-md-4">
+                            <div class="card position-relative">
+                                <img src="https://pbs.twimg.com/media/ExlKcKxWYAM3eoW.jpg" class="card-img-top"
+                                    alt="Card image">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title text-center funnel-sans" style="background-color: rgba(0, 0, 0, 0.8); padding: 5px; border-radius: 15px; 
+                                        width: 40%; color: aliceblue; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png"
+                                            style="width: 25px; height: 25px; margin-right: 5px;">C++
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-text funnel-sans" style="color: aliceblue;">Master C++,
+                                        From Systems to Games and Apps!</h5>
+                                    <a href="#" class="learn-button" style="text-decoration: none;">
+                                        <h5>Learn</h5>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

@@ -28,6 +28,7 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     opacity: 90%;
+    z-index: 10;
 }
 
 .video-background {
@@ -44,9 +45,14 @@ p {
 
 main {
     flex: 1; /* Pushes footer to the bottom */
+    min-height: 100%; /* Take up full height of the screen */
 }
 
 footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
     background-color: #424d8a;
     color: rgb(61, 120, 159);
     text-align: center;
@@ -144,4 +150,91 @@ html, body {
     position: relative; /* Added to position the pseudo-elements correctly */
 }
 
+.cards-img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark background with transparency */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.learn-button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-shadow: none;
+    width: fit-content;
+  }
+  
+  .learn-button {
+    text-shadow: none;
+    --primary-color: aliceblue;
+    --hovered-color: rgb(95, 210, 255);
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    font-size: 20px;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .learn-button h5 {
+    margin: 0;
+    position: relative;
+    font-size: 20px;
+    color: var(--primary-color);
+  }
+  
+  .learn-button::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.1s ease-out;
+  }
+  
+  .learn-button h5::before {
+    position: absolute;
+    /*   box-sizing: border-box; */
+    content: "Learn";
+    width: 0%;
+    inset: 0;
+    color: var(--hovered-color);
+    overflow: hidden;
+    transition: 0.1s ease-out;
+  }
+  
+  .learn-button:hover::after {
+    width: 100%;
+  }
+  
+  .learn-button:hover h5::before {
+    width: 100%;
+  }
+  
+  .learn-button:hover svg {
+    transform: translateX(4px);
+    color: var(--hovered-color);
+  }
+  
+  .learn-button svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+  }
+  
+  
   
