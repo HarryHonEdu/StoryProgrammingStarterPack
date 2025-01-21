@@ -134,5 +134,14 @@ html, body {
     left: 0;
     width: 100%;
     z-index: 1000; /* Make sure the navbar is always on top of other content */
-  }
+}
+
+.section {
+    height: 100vh; /* Make each section take full screen */
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    flex-direction: column; /* Smooth transition for scrolling */
+    position: relative; /* Added to position the pseudo-elements correctly */
+}
+
   
